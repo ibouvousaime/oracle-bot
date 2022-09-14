@@ -4,8 +4,6 @@ const oracleData = require('./oracle-data.json')
 
 const bot = new Tgfancy(process.env.telegram_token, {
     polling:true, 
-    // all options to 'tgfancy' MUST be placed under the
-    // 'tgfancy' key, as shown below
     tgfancy: {
         option: "value",
     },
