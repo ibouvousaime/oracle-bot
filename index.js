@@ -32,8 +32,12 @@ function sendOracleMessage(chatId, msg) {
     return new Promise((resolve, reject)=> {
         let message = getRandomOracleMessage()
         const sourceLink = `${generateGoogleLuckyLink(message.Source, message.Book, message.Line)}`
-        let formattedOracleMessage = `The oracle's message to ${msg.text}: <i>${message.Oracle}</i> <a href="${sourceLink}"> Source: ${message.Source}, Book: ${message.Book}, Line : ${message.Line}</a> <code>(${message.Source}  ${message.Book} ${message.Line})</code>`
-        bot.sendMessage(chatId, formattedOracleMessage, {parse_mode:"HTML", disable_web_page_preview: true}).then(()=> {
+        let formattedOracleMessage = 
+        `The oracle's message to <b>${msg.text}</b>: \n\n` +
+        `<i>"${message.Oracle}"</i>\n\n` +
+        `<a href="${sourceLink}">Source: ${message.Source}, Book: ${message.Book}, Line: ${message.Line}</a>\n\n`+ 
+        `<code>${message.Source} Book ${message.Book} Line ${message.Line}</code>`;
+                bot.sendMessage(chatId, formattedOracleMessage, {parse_mode:"HTML", disable_web_page_preview: true}).then(()=> {
             console.log("sent", formattedOracleMessage)
             resolve()
         }).catch(err=> {
